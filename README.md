@@ -32,27 +32,39 @@ This project implements an intelligent PDF analysis and question-answering syste
   - llama3.1:8b
   - Other Ollama-compatible models
 
+# Example
+
 ### Source of Information from PDF document.
 
-![PDF Ingestion Process](screenshots\Mortgage_confermation.png)
-_Screenshot showing the PDF ingestion process with progress bar_
+![PDF Ingestion Process](screenshots/Source_Mortgage_confermation.png)
+_Screenshot showing the PDF with answer_
 
 ### Question and Answer Interface
 
-![Query Interface](screenshots\Mortgage_confermation.png)
+![Query Interface](screenshots/Mortgage_confermation.png)
 _Screenshot of the command-line interface showing a sample query and response_
 
 ## Setup and Installation
 
-#### Step 1: Step a Virtual Environment
+#### Step 2: Step a Virtual Environment
 
-#### Step 2: Install the Requirements
+```
+conda create -n venv
+```
+
+#### Step 3:Activate virtual enviroment
+
+```
+conda activate venv/
+```
+
+#### Step 4: Install the Requirements
 
 ```
 pip install -r requirements.txt
 ```
 
-#### Step 3: Pull the models (if you already have models loaded in Ollama, then not required)
+#### Step 3: Pull the models (if you already have models loaded in Ollama, then please skip next command)
 
 #### Make sure to have Ollama running on your system from https://ollama.ai
 
@@ -74,15 +86,8 @@ python readpdf.py
 
 Output should look like this:
 
-```shell
-Creating new vectorstore
-Loading documents from my_pdfs
-Loading new documents: 100%|██████████████████████| 1/1 [00:01<00:00,  1.99s/it]
-Loaded 235 new documents from my_pdfs
-Split into 1268 chunks of text (max. 500 tokens each)
-Creating embeddings. May take some minutes...
-Ingestion complete! You can now run Talkingpdfs.py to query your documents
-```
+![Reading the PDF](screenshots/Reading_pdf.png)
+_Screenshot of the command-line interface showing PDF being broken into chunks and storing them in vector DBs_
 
 #### Step 6: Run this command (use python3 if on mac)
 
@@ -97,9 +102,12 @@ Enter a query: How many locations does WeWork have?
 ### Try with a different model:
 
 ```
-ollama pull llama2:13b
-MODEL=llama2:13b python Talkingpdfs.py
+ollama pull llama3.1:8b
+MODEL=llama3.1:8b python Talkingpdfs.py
 ```
+
+![Invoking the Llama model in local machine](screenshots/invoking_llama.png)
+_Screenshot of the command-line interface showing how to run the llama3.1 in local system_
 
 ## Add more files
 
@@ -108,3 +116,28 @@ Put any and all your files into the `my_pdfs` directory
 The supported extensions are:
 
 - `.pdf`: Portable Document Format (PDF),
+
+## Future Enhancements
+
+### 1. Extended Document Support
+
+- Support for additional document formats (.docx, .txt, .xlsx, .pptx)
+- Handle scanned PDFs through OCR integration
+- Support for documents with tables, charts, and images
+- Multi-language document support and cross-language querying
+
+### 2. Advanced Query Capabilities
+
+- Multiple document comparison and cross-referencing
+- Support for complex queries requiring mathematical calculations
+- Document summarization features
+- Topic modeling and document clustering
+- Query templates for common information extraction patterns
+
+### 3. Enhanced User Experience
+
+- Web-based user interface with document visualization
+- Real-time document processing status
+- Query history and favorite queries
+- Document annotation and highlighting
+- Export functionality for answers and citations
