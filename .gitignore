@@ -164,3 +164,5 @@ cython_debug/
 # virtual enviroment files
 venv/
 
+# vector database
+vectro_db/
